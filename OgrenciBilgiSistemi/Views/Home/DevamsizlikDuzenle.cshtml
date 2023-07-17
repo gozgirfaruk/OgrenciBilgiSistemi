@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Devamsizlik Düzenle";
+    ViewBag.Sayfa = "DevamsizlikGirisPartial";
+}
+
+@using OgrenciBilgiSistemi.Db;
+
+@model OgrenciDers
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.Title</h5>
+
+            <!-- Horizontal Form -->
+            <form method="post" action="/Home/DevamsizlikKaydet">
+                <input type="hidden" class="form-control" name="ogrenciDersId" value="@Model.Id" />
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">devamsızlık sayısı</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="devamsizlikSayisi" value="@Model.DevamsizlikSayisi">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                    <button type="reset" class="btn btn-secondary">Sıfırla</button>
+                </div>
+            </form><!-- End Horizontal Form -->
+
+        </div>
+    </div>
+</div>
+@if (ViewBag.Mesaj != null)
+{
+
+    <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+        @ViewBag.Mesaj
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+}

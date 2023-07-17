@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OgrenciBilgiSistemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Akademisyen">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdiSoyadi" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Sifre" Type="varchar" MaxLength="50" />
+    <Property Name="Unvan" Type="varchar" MaxLength="50" />
+    <Property Name="Resim" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Ders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="varchar" MaxLength="50" />
+    <Property Name="AkademisyenId" Type="int" />
+    <Property Name="Gun" Type="int" />
+    <Property Name="Saat" Type="varchar" MaxLength="50" />
+    <Property Name="ToplamDersSaati" Type="varchar" MaxLength="50" />
+    <Property Name="Kredi" Type="int" />
+    <Property Name="VizeOran" Type="int" />
+    <Property Name="FinalOran" Type="int" />
+  </EntityType>
+  <EntityType Name="Ogrenci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OgrNo" Type="varchar" MaxLength="50" />
+    <Property Name="AdiSoyadi" Type="varchar" MaxLength="50" />
+    <Property Name="Sifre" Type="varchar" MaxLength="50" />
+    <Property Name="Resim" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="OgrenciDers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OgrenciId" Type="int" />
+    <Property Name="DersId" Type="int" />
+    <Property Name="DevamsizlikSayisi" Type="varchar" MaxLength="50" />
+    <Property Name="VizeNotu" Type="int" />
+    <Property Name="FinalNotu" Type="int" />
+    <Property Name="ButNotu" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Ders_Akademisyen">
+    <End Role="Akademisyen" Type="Self.Akademisyen" Multiplicity="0..1" />
+    <End Role="Ders" Type="Self.Ders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Akademisyen">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ders">
+        <PropertyRef Name="AkademisyenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OgrenciDers_Ders">
+    <End Role="Ders" Type="Self.Ders" Multiplicity="0..1" />
+    <End Role="OgrenciDers" Type="Self.OgrenciDers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OgrenciDers">
+        <PropertyRef Name="DersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OgrenciDers_Ogrenci">
+    <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="0..1" />
+    <End Role="OgrenciDers" Type="Self.OgrenciDers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenci">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OgrenciDers">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OgrenciBilgiSistemiModelStoreContainer">
+    <EntitySet Name="Akademisyen" EntityType="Self.Akademisyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ders" EntityType="Self.Ders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OgrenciDers" EntityType="Self.OgrenciDers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ders_Akademisyen" Association="Self.FK_Ders_Akademisyen">
+      <End Role="Akademisyen" EntitySet="Akademisyen" />
+      <End Role="Ders" EntitySet="Ders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OgrenciDers_Ders" Association="Self.FK_OgrenciDers_Ders">
+      <End Role="Ders" EntitySet="Ders" />
+      <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OgrenciDers_Ogrenci" Association="Self.FK_OgrenciDers_Ogrenci">
+      <End Role="Ogrenci" EntitySet="Ogrenci" />
+      <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

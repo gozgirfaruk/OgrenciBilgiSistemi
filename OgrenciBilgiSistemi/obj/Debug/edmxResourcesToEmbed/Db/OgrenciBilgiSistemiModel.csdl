@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OgrenciBilgiSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Akademisyen">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdiSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Unvan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Resim" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ders" Relationship="Self.FK_Ders_Akademisyen" FromRole="Akademisyen" ToRole="Ders" />
+  </EntityType>
+  <EntityType Name="Ders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AkademisyenId" Type="Int32" />
+    <Property Name="Gun" Type="Int32" />
+    <Property Name="Saat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ToplamDersSaati" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Kredi" Type="Int32" />
+    <Property Name="VizeOran" Type="Int32" />
+    <Property Name="FinalOran" Type="Int32" />
+    <NavigationProperty Name="Akademisyen" Relationship="Self.FK_Ders_Akademisyen" FromRole="Ders" ToRole="Akademisyen" />
+    <NavigationProperty Name="OgrenciDers" Relationship="Self.FK_OgrenciDers_Ders" FromRole="Ders" ToRole="OgrenciDers" />
+  </EntityType>
+  <EntityType Name="Ogrenci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OgrNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AdiSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Resim" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="OgrenciDers" Relationship="Self.FK_OgrenciDers_Ogrenci" FromRole="Ogrenci" ToRole="OgrenciDers" />
+  </EntityType>
+  <EntityType Name="OgrenciDers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OgrenciId" Type="Int32" />
+    <Property Name="DersId" Type="Int32" />
+    <Property Name="DevamsizlikSayisi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VizeNotu" Type="Int32" />
+    <Property Name="FinalNotu" Type="Int32" />
+    <Property Name="ButNotu" Type="Int32" />
+    <NavigationProperty Name="Ders" Relationship="Self.FK_OgrenciDers_Ders" FromRole="OgrenciDers" ToRole="Ders" />
+    <NavigationProperty Name="Ogrenci" Relationship="Self.FK_OgrenciDers_Ogrenci" FromRole="OgrenciDers" ToRole="Ogrenci" />
+  </EntityType>
+  <Association Name="FK_Ders_Akademisyen">
+    <End Role="Akademisyen" Type="Self.Akademisyen" Multiplicity="0..1" />
+    <End Role="Ders" Type="Self.Ders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Akademisyen">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ders">
+        <PropertyRef Name="AkademisyenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OgrenciDers_Ders">
+    <End Role="Ders" Type="Self.Ders" Multiplicity="0..1" />
+    <End Role="OgrenciDers" Type="Self.OgrenciDers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OgrenciDers">
+        <PropertyRef Name="DersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OgrenciDers_Ogrenci">
+    <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="0..1" />
+    <End Role="OgrenciDers" Type="Self.OgrenciDers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenci">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OgrenciDers">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OgrenciBilgiSistemiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Akademisyen" EntityType="Self.Akademisyen" />
+    <EntitySet Name="Ders" EntityType="Self.Ders" />
+    <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" />
+    <EntitySet Name="OgrenciDers" EntityType="Self.OgrenciDers" />
+    <AssociationSet Name="FK_Ders_Akademisyen" Association="Self.FK_Ders_Akademisyen">
+      <End Role="Akademisyen" EntitySet="Akademisyen" />
+      <End Role="Ders" EntitySet="Ders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OgrenciDers_Ders" Association="Self.FK_OgrenciDers_Ders">
+      <End Role="Ders" EntitySet="Ders" />
+      <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OgrenciDers_Ogrenci" Association="Self.FK_OgrenciDers_Ogrenci">
+      <End Role="Ogrenci" EntitySet="Ogrenci" />
+      <End Role="OgrenciDers" EntitySet="OgrenciDers" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="OgrenciBilgiSistemiModel.sysdiagrams" />
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>

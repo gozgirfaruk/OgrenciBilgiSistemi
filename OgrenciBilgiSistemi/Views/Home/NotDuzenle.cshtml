@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "NotDuzenle";
+    ViewBag.Sayfa = "NotGirisPartial";
+
+}
+
+@using OgrenciBilgiSistemi.Db;
+
+@model OgrenciDers
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Horizontal Form</h5>
+
+            <!-- Horizontal Form -->
+            <form method="post" action="/Home/NotKaydet">
+                <input type="hidden" class="form-control" name="ogrenciDersId" value="@Model.Id" />
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Vize Notu</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="vizeNotu" value="@Model.VizeNotu">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Final Notu</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="finalNotu" value="@Model.FinalNotu">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Büt Notu</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="butNotu" value="@Model.ButNotu">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                    <button type="reset" class="btn btn-secondary">Sıfırla</button>
+                </div>
+            </form><!-- End Horizontal Form -->
+
+        </div>
+    </div>
+</div>
+@if (ViewBag.Mesaj != null)
+{
+
+<div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+    @ViewBag.Mesaj
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+}

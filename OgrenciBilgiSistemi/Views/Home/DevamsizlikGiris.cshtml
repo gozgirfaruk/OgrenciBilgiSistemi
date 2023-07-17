@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "DevamsizlikGiris";
+    ViewBag.Sayfa = "DevamsizlikGirisPartial";
+}
+
+@using OgrenciBilgiSistemi.Db;
+
+@model List<OgrenciDers>
+
+<div class="col-12">
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.Ders</h5>
+
+            <!-- Table with stripped rows -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ogrenci Numarası</th>
+                        <th scope="col">Ogrenci Adı</th>
+                        <th scope="col">Ortalama Notu</th>
+                        <th scope="col">Devamsızlık Sayısı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (OgrenciDers item in Model)
+                    {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Ogrenci.OgrNo</td>
+                        <td>@item.Ogrenci.AdiSoyadi</td>
+                        <td>@((item.VizeNotu * item.Ders.VizeOran + (item.ButNotu == null ? item.FinalNotu : item.ButNotu) * item.Ders.FinalOran ) / 100)</td>
+                        <td>@item.DevamsizlikSayisi</td>
+                        <td>
+                            <a href="~/Home/DevamsizlikDuzenle?ogrenciDersId=@item.Id" class="btn btn-secondary"><i class=" ri-edit-2-line"></i></a>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+        </div>
+    </div>
+</div>
+
+

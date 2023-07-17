@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "NotGirisPartial";
+    ViewBag.Sayfa = "NotGirisPartial";
+}
+@using OgrenciBilgiSistemi.Db;
+
+@model List<Ders>
+<div class="col-12">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ders Listesi</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ders Adı</th>
+                                <th scope="col">Dersi Alan Öğrenci Sayısı</th>
+                                <th scope="col">Ders Günü</th>
+                                <th scope="col">Ders Saati</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Ders item in Model)
+                            {
+                            <tr>
+                                <th scope="row">@item.Id</th>
+                                <td>@item.Adi</td>
+                                <td>@item.OgrenciDers.Count</td>
+                                <td>@{
+                                    switch (item.Gun)
+                                    {
+                                        case 1:
+                                            <text>Pazartesi</text>
+                                            break;
+                                        case 2:
+                                            <text>Salı</text>
+                                            break;
+                                        case 3:
+                                            <text>Çarşamba</text>
+                                            break;
+                                        case 4:
+                                            <text>Perşembe</text>
+                                            break;
+                                        case 5:
+                                            <text>Cuma</text>
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                </td>
+                                <td>@item.Saat</td>
+                                <td>
+                                    <a href="~/Home/NotGiris?dersId=@item.Id" class="btn btn-secondary"><i class=" ri-edit-2-line"></i></a>
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

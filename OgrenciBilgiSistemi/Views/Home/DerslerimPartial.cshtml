@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Ders Listesi";
+    ViewBag.Sayfa = "DerslerimPartial";
+}
+
+@using OgrenciBilgiSistemi.Db;
+
+@model List<OgrenciDers>
+<div class="col-12">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@ViewBag.Title</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ders Adı</th>
+                                <th scope="col">Akademisyen Adı</th>
+                                <th scope="col">Dersi Alan Öğrenci Sayısı</th>
+                                <th scope="col">Ders Günü</th>
+                                <th scope="col">Ders Saati</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OgrenciDers item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.Ders.Id</th>
+                                    <td>@item.Ders.Adi</td>
+                                    <td>@(item.Ders.Akademisyen.Unvan + " " + item.Ders.Akademisyen.AdiSoyadi)</td>
+                                    <td>@item.Ders.OgrenciDers.Count</td>
+                                    <td>
+                                        @{
+                                            switch (item.Ders.Gun)
+                                            {
+                                                case 1:
+                                                    <text>Pazartesi</text>
+                                                    break;
+                                                case 2:
+                                                    <text>Salı</text>
+                                                    break;
+                                                case 3:
+                                                    <text>Çarşamba</text>
+                                                    break;
+                                                case 4:
+                                                    <text>Perşembe</text>
+                                                    break;
+                                                case 5:
+                                                    <text>Cuma</text>
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                    </td>
+                                    <td>@item.Ders.Saat</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

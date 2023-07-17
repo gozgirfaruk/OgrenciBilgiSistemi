@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OgrenciBilgiSistemiModelStoreContainer" CdmEntityContainer="OgrenciBilgiSistemiEntities">
+    <EntitySetMapping Name="Akademisyen">
+      <EntityTypeMapping TypeName="OgrenciBilgiSistemiModel.Akademisyen">
+        <MappingFragment StoreEntitySet="Akademisyen">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AdiSoyadi" ColumnName="AdiSoyadi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Unvan" ColumnName="Unvan" />
+          <ScalarProperty Name="Resim" ColumnName="Resim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ders">
+      <EntityTypeMapping TypeName="OgrenciBilgiSistemiModel.Ders">
+        <MappingFragment StoreEntitySet="Ders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="AkademisyenId" ColumnName="AkademisyenId" />
+          <ScalarProperty Name="Gun" ColumnName="Gun" />
+          <ScalarProperty Name="Saat" ColumnName="Saat" />
+          <ScalarProperty Name="ToplamDersSaati" ColumnName="ToplamDersSaati" />
+          <ScalarProperty Name="Kredi" ColumnName="Kredi" />
+          <ScalarProperty Name="VizeOran" ColumnName="VizeOran" />
+          <ScalarProperty Name="FinalOran" ColumnName="FinalOran" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ogrenci">
+      <EntityTypeMapping TypeName="OgrenciBilgiSistemiModel.Ogrenci">
+        <MappingFragment StoreEntitySet="Ogrenci">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OgrNo" ColumnName="OgrNo" />
+          <ScalarProperty Name="AdiSoyadi" ColumnName="AdiSoyadi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Resim" ColumnName="Resim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OgrenciDers">
+      <EntityTypeMapping TypeName="OgrenciBilgiSistemiModel.OgrenciDers">
+        <MappingFragment StoreEntitySet="OgrenciDers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OgrenciId" ColumnName="OgrenciId" />
+          <ScalarProperty Name="DersId" ColumnName="DersId" />
+          <ScalarProperty Name="DevamsizlikSayisi" ColumnName="DevamsizlikSayisi" />
+          <ScalarProperty Name="VizeNotu" ColumnName="VizeNotu" />
+          <ScalarProperty Name="FinalNotu" ColumnName="FinalNotu" />
+          <ScalarProperty Name="ButNotu" ColumnName="ButNotu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="OgrenciBilgiSistemiModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

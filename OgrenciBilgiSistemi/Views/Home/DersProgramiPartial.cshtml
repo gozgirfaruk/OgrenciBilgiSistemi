@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "DersProgramiPartial";
+    ViewBag.Sayfa = "DersProgramiPartial";
+}
+
+@using OgrenciBilgiSistemi.Db
+
+@model List<OgrenciDers>
+
+<div class="col-12">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Pazartesi</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ders Adı</th>
+                                <th scope="col">Dersi Veren Akademisyen</th>
+                                <th scope="col">Ders Saati</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OgrenciDers item in Model)
+                            {
+                                if (item.Ders.Gun == 1)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.DersId</th>
+                                        <td>@item.Ders.Adi</td>
+                                        <td>@item.Ders.Akademisyen.Unvan @item.Ders.Akademisyen.AdiSoyadi</td>
+                                        <td>@item.Ders.Saat</td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                        </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Salı</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ders Adı</th>
+                                <th scope="col">Dersi Veren Akademisyen</th>
+                                <th scope="col">Ders Saati</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OgrenciDers item in Model)
+                            {
+                                if (item.Ders.Gun == 2)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.DersId</th>
+                                        <td>@item.Ders.Adi</td>
+                                        <td>@item.Ders.Akademisyen.Unvan @item.Ders.Akademisyen.AdiSoyadi</td>
+                                        <td>@item.Ders.Saat</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Çarşamba</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ders Adı</th>
+                                <th scope="col">Dersi Veren Akademisyen</th>
+                                <th scope="col">Ders Saati</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OgrenciDers item in Model)
+                            {
+                                if (item.Ders.Gun == 3)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.DersId</th>
+                                        <td>@item.Ders.Adi</td>
+                                        <td>@item.Ders.Akademisyen.Unvan @item.Ders.Akademisyen.AdiSoyadi</td>
+                                        <td>@item.Ders.Saat</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Perşembe</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ders Adı</th>
+                                <th scope="col">Dersi Veren Akademisyen</th>
+                                <th scope="col">Ders Saati</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OgrenciDers item in Model)
+                            {
+                                if (item.Ders.Gun == 4)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.DersId</th>
+                                        <td>@item.Ders.Adi</td>
+                                        <td>@item.Ders.Akademisyen.Unvan @item.Ders.Akademisyen.AdiSoyadi</td>
+                                        <td>@item.Ders.Saat</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cuma</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ders Adı</th>
+                                <th scope="col">Dersi Veren Akademisyen</th>
+                                <th scope="col">Ders Saati</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OgrenciDers item in Model)
+                            {
+                                if (item.Ders.Gun == 5)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.DersId</th>
+                                        <td>@item.Ders.Adi</td>
+                                        <td>@item.Ders.Akademisyen.Unvan @item.Ders.Akademisyen.AdiSoyadi</td>
+                                        <td>@item.Ders.Saat</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
